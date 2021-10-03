@@ -1,0 +1,1 @@
+cargo run --target-dir=./target/win
