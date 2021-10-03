@@ -20,15 +20,18 @@ pub async fn main() -> Result<(), Error> {
                 // Print received text message to stdout.
                 println!("<{}>: {}", &message.from.first_name, data);
 
+                
+                if data == "l"{
+                    break;
+                }
+
                 // Answer message with "Hi".
                 api.send(message.text_reply(format!(
                     "Hi, {}! You just wrote '{}'",
                     &message.from.first_name, data
                 )))
                 .await?;
-                if data == "h"{
-                    break;
-                }
+                
             }
         }
     }

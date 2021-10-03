@@ -5,6 +5,11 @@ mod bot;
 
 fn main(){
     println!("Start");
-    bot::main().expect("testing");
+    let bot_handler = thread::spawn(||{
+        bot::main().expect("testing");
+    });
+
+    let bot_result = bot_handler.join();
+
     println!("HOBA");
 }
