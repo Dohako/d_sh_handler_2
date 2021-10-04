@@ -3,6 +3,7 @@ use std::env;
 use futures::StreamExt;
 use telegram_bot::*;
 use dotenv::dotenv;
+use std::process::Command;
 
 #[tokio::main]
 pub async fn main() -> Result<(), Error> {
@@ -21,17 +22,38 @@ pub async fn main() -> Result<(), Error> {
                 println!("<{}>: {}", &message.from.first_name, data);
 
                 
-                if data == "l"{
-                    break;
+                if data.contains("/v"){
+                    let value = &data[3..];
+                    let int_val: i32 = value.parse().unwrap();
+                    api.send(message.text_reply(format!(
+                        "Ok, set volume to {}",int_val
+                    )))
+                    .await?;
+                    
+                    let sound_command = format!("amixer -D pulse sset Master {}%",value);
+                    let output = if cfg!(target_os = "windows") {
+                        Command::new("cmd")
+                                .args(["/C", "echo wrong system"])
+                                .output()
+                                .expect("failed to execute process")
+                    } else {
+                        Command::new("sh")
+                                .arg("-c")
+                                .arg(sound_command)
+                                .output()
+                                .expect("failed to execute process")
+                    };
+                    
+                    let hello = output.stdout;
                 }
-
-                // Answer message with "Hi".
-                api.send(message.text_reply(format!(
-                    "Hi, {}! You just wrote '{}'",
-                    &message.from.first_name, data
-                )))
-                .await?;
-                
+                else {
+                    // Answer message with "Hi".
+                    api.send(message.text_reply(format!(
+                        "Hi, {}! You just wrote '{}'",
+                        &message.from.first_name, data
+                    )))
+                    .await?;
+                }
             }
         }
     }

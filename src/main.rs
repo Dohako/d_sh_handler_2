@@ -1,7 +1,6 @@
-use std::thread;
-use std::time::Duration;
-// mod lib;
 mod bot;
+
+use std::thread;
 
 fn main(){
     println!("Start");
