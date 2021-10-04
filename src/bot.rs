@@ -1,14 +1,9 @@
-use std::env;
-
 use futures::StreamExt;
 use telegram_bot::*;
-use dotenv::dotenv;
 use std::process::Command;
 
 #[tokio::main]
-pub async fn main() -> Result<(), Error> {
-    dotenv().expect(".env file not found");
-    let token = env::var("TELEGRAM_BOT_TOKEN").expect("TELEGRAM_BOT_TOKEN not set");
+pub async fn start(token: String) -> Result<(), Error> {
     let api = Api::new(token);
 
     // Fetch new updates via long poll method
@@ -29,7 +24,7 @@ pub async fn main() -> Result<(), Error> {
                         "Ok, set volume to {}",int_val
                     )))
                     .await?;
-                    
+
                     let sound_command = format!("amixer -D pulse sset Master {}%",value);
                     let output = if cfg!(target_os = "windows") {
                         Command::new("cmd")
@@ -44,7 +39,7 @@ pub async fn main() -> Result<(), Error> {
                                 .expect("failed to execute process")
                     };
                     
-                    let hello = output.stdout;
+                    let _hello = output.stdout;
                 }
                 else {
                     // Answer message with "Hi".

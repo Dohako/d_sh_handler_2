@@ -1,14 +1,15 @@
 mod bot;
+mod config;
 
 use std::thread;
 
 fn main(){
     println!("Start");
     let bot_handler = thread::spawn(||{
-        bot::main().expect("testing");
+        bot::start(config::get_token().to_string()).expect("testing");
     });
 
-    let bot_result = bot_handler.join();
+    let _bot_result = bot_handler.join();
 
     println!("HOBA");
 }

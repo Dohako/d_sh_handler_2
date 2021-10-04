@@ -10,3 +10,7 @@ telegram-bot = '0.8.0'
 tokio = { version = "0.2.25", features = [ "macros" ] }
 futures="*"
 dotenv = "0.15.0"
+# Added due to reqwest dependency problems when cross-compiling for RPi
+# For deploy to rpi uncomment bellow
+# openssl = { version = "0.10.32", features = ["vendored"] }
+# openssl-sys = "0.9.67"

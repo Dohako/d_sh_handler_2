@@ -16,3 +16,4 @@ Cargo.lock
 
 # dohako improve
 .env
+/src/config.rs
