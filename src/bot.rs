@@ -18,28 +18,7 @@ pub async fn start(token: String) -> Result<(), Error> {
 
                 
                 if data.contains("/v"){
-                    let value = &data[3..];
-                    let int_val: i32 = value.parse().unwrap();
-                    api.send(message.text_reply(format!(
-                        "Ok, set volume to {}",int_val
-                    )))
-                    .await?;
-
-                    let sound_command = format!("amixer -D pulse sset Master {}%",value);
-                    let output = if cfg!(target_os = "windows") {
-                        Command::new("cmd")
-                                .args(["/C", "echo wrong system"])
-                                .output()
-                                .expect("failed to execute process")
-                    } else {
-                        Command::new("sh")
-                                .arg("-c")
-                                .arg(sound_command)
-                                .output()
-                                .expect("failed to execute process")
-                    };
-                    
-                    let _hello = output.stdout;
+                    change_volume(&api, &message, &data).await.expect("Error");
                 }
                 else {
                     // Answer message with "Hi".
@@ -52,5 +31,31 @@ pub async fn start(token: String) -> Result<(), Error> {
             }
         }
     }
+    Ok(())
+}
+
+async fn change_volume(api:&Api,message:&Message, data: &String)-> Result<(), Error>{
+    let value = &data[3..];
+    let int_val: i32 = value.parse().unwrap();
+    api.send(message.text_reply(format!(
+        "Ok, set volume to {}",int_val
+    )))
+    .await?;
+
+    let sound_command = format!("amixer -D pulse sset Master {}%",value);
+    let output = if cfg!(target_os = "windows") {
+        Command::new("cmd")
+                .args(["/C", "echo wrong system"])
+                .output()
+                .expect("failed to execute process")
+    } else {
+        Command::new("sh")
+                .arg("-c")
+                .arg(sound_command)
+                .output()
+                .expect("failed to execute process")
+    };
+    
+    let _hello = output.stdout;
     Ok(())
 }

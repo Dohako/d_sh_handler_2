@@ -8,3 +8,5 @@ set -o xtrace
 readonly TARGET_ARCH=armv7-unknown-linux-gnueabihf
 
 cargo build --release --target=${TARGET_ARCH}
+
+cp ./target/${TARGET_ARCH}/release/d_sh_handler_2 ./autorun/d_sh_handler_2
