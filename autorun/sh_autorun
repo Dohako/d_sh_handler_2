@@ -4,3 +4,4 @@ while true; do
     echo "Starting in 5"
     chmod +x ./d_sh_handler_2
     ./d_sh_handler_2
+done
