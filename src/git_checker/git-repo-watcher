@@ -94,6 +94,8 @@ hook() {
 pull_change() {
     # for restoring to origin the rights
     git checkout ./autorun/d_sh_handler_2
+    git checkout ./autorun/sh_autorun
+    git checkout ./src/git_checker/git-repo-watcher
     # end
 
     git pull
