@@ -4,6 +4,8 @@ pub fn start(){
     println!("Start git checker!");
     run_command("chmod +x /home/pi/d_sh_handler_2/git_checker/git-repo-checker");
     let out = run_command("/home/pi/d_sh_handler_2/git_checker/git-repo-checker");
+    let s = format!("{:?}", &out);
+    println!("{}", s);
     println!("{:?}", out);
 }
 
