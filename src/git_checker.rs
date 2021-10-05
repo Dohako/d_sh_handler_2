@@ -7,7 +7,7 @@ pub fn start(){
     println!("{:?}", out);
 }
 
-fn run_command(command:&'static str) -> Vec<u8>{
+fn run_command(command:&'static str) -> output{
     let output = if cfg!(target_os = "windows") {
         println!("Windows");
         Command::new("cmd")
@@ -23,6 +23,6 @@ fn run_command(command:&'static str) -> Vec<u8>{
                 .expect("failed to execute process")
     };
     
-    let result = output.stdout;
-    return result;
+    let _result = output.stdout;
+    return output;
 }
