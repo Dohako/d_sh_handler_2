@@ -25,6 +25,7 @@ fn run_command(command:&'static str) -> Vec<u8>{
                 .expect("failed to execute process")
     };
     
+    println!("{:#?}", output);
     let _result = output.stdout;
     let _err_result = output.stderr;
     return _err_result;
