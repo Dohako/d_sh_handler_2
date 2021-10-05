@@ -9,11 +9,13 @@ pub fn start(){
 
 fn run_command(command:&'static str) -> Vec<u8>{
     let output = if cfg!(target_os = "windows") {
+        println!("Windows");
         Command::new("cmd")
                 .args(["/C", "echo a"])
                 .output()
                 .expect("failed to execute process")
     } else {
+        println!("Not windows");
         Command::new("sh")
                 .arg("-c")
                 .arg(command)
