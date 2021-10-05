@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-set -o errexit
-set -o nounset
-set -o pipefail
-set -o xtrace
-
 while true; do
     echo "Starting in 5"
     chmod +x /home/pi/d_sh_handler_2/autorun/d_sh_handler_2
