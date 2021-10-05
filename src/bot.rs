@@ -38,7 +38,7 @@ async fn change_volume(api:&Api,message:&Message, data: &String)-> Result<(), Er
     let value = &data[3..];
     let int_val: i32 = value.parse().unwrap();
     api.send(message.text_reply(format!(
-        "Ok, set volume to {}",int_val
+        "Ok, set volume to {}%",int_val
     )))
     .await?;
 
