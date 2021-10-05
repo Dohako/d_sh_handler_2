@@ -3,6 +3,6 @@
 while true; do
     echo "___________________________"
     echo "Starting in 5"
-    chmod +x /home/pi/d_sh_handler_2/autorun/d_sh_handler_2 >> err.err
-    /home/pi/d_sh_handler_2/autorun/d_sh_handler_2 >> err.err
+    chmod +x /home/pi/d_sh_handler_2/autorun/d_sh_handler_2 >> /home/pi/err.err
+    /home/pi/d_sh_handler_2/autorun/d_sh_handler_2 >> /home/pi/err.err
 done
