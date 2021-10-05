@@ -5,9 +5,9 @@ mod git_checker;
 use std::thread;
 
 fn main(){
-    println!("Start");
+    println!("Start main.rs");
     let _bot_handler = thread::spawn(||{
-        bot::start(config::get_token().to_string()).expect("testing");
+        bot::start(config::get_token().to_string()).expect("Some error!");
     });
 
     let git_checker_handler = thread::spawn(||{

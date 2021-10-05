@@ -4,6 +4,8 @@ use std::process::Command;
 
 #[tokio::main]
 pub async fn start(token: String) -> Result<(), Error> {
+    println!("Start bot.rs");
+    println!("{}", token);
     let api = Api::new(token);
 
     // Fetch new updates via long poll method
