@@ -1,7 +1,7 @@
 use std::process::Command;
 
 pub fn start(){
-    println!("Start git checker");
+    println!("Start git checker!!!");
     run_command("cd /home/pi/d_sh_handler_2");
     run_command("git checkout ./autorun/d_sh_handler_2");
     run_command("chmod +x /home/pi/d_sh_handler_2/src/git_checker/git-repo-watcher");
@@ -9,6 +9,7 @@ pub fn start(){
 }
 
 fn run_command(command:&'static str){
+    println!("{}", command);
     let output = if cfg!(target_os = "windows") {
         println!("Windows");
         Command::new("cmd")
