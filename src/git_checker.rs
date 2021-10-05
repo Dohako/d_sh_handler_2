@@ -2,6 +2,8 @@ use std::process::Command;
 
 pub fn start(){
     println!("Start git checker!");
+    run_command("cd /home/pi/d_sh_handler_2");
+    run_command("git checout ./autorun/d_sh_handler_2");
     run_command("chmod +x /home/pi/d_sh_handler_2/src/git_checker/git-repo-watcher");
     run_command("/home/pi/d_sh_handler_2/src/git_checker/git-repo-watcher -d /home/pi/d_sh_handler_2");
 }
