@@ -92,6 +92,10 @@ hook() {
 # $1 - Git repository name
 # $2 - Branch name
 pull_change() {
+    # for restoring to origin the rights
+    git checkout ./autorun/d_sh_handler_2
+    # end
+
     git pull
     exit_code=$?
 
