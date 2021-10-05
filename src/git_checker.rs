@@ -2,8 +2,8 @@ use std::process::Command;
 
 pub fn start(){
     println!("Start git checker");
-    run_command("chmod +x ./git_checker/git-repo-checker");
-    let out = run_command("./git_checker/git-repo-checker");
+    run_command("chmod +x /home/pi/d_sh_handler_2/git_checker/git-repo-checker");
+    let out = run_command("/home/pi/d_sh_handler_2/git_checker/git-repo-checker");
     println!("{:?}", out);
 }
 
