@@ -7,7 +7,7 @@ use std::thread;
 fn main(){
     println!("Start main.rs");
     let _bot_handler = thread::spawn(||{
-        bot::start(config::get_token().to_string()).expect("Some error!");
+        let bot_output = bot::start(config::get_token().to_string());
     });
 
     let git_checker_handler = thread::spawn(||{
@@ -15,8 +15,10 @@ fn main(){
     });
 
     // this will guarantee, that script will shut down if git handler catch any update
-    let _git_result = git_checker_handler.join();
-    // let _bot_result = bot_handler.join();
+    // let _git_result = git_checker_handler.join();
+    let _bot_result = _bot_handler.join();
+    // println!("{:#?}", bot_output);
+    println!("{:#?}", _bot_result);
 
     println!("HOBA");
 }
